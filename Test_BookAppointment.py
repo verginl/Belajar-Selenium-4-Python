@@ -49,6 +49,9 @@ class Basic(unittest.TestCase):
         BtnBook.click()
         time.sleep(1)
 
+        actualRslt = "Appointment Confirmation"
+        response_message = driver.find_element(By.XPATH,"//*[@id='summary']/div/div/div[1]/h2").text
+        self.assertEqual(response_message, actualRslt)
         
 unittest.main()
 
