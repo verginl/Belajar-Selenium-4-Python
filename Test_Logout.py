@@ -25,31 +25,20 @@ class Basic(unittest.TestCase):
          BtnLogin.click()
          time.sleep(1)    
 
-    def test_bookappointment(self):
+    def test_logout(self):
         driver = self.driver
-        CmbFacility = Select(driver.find_element(by=By.ID, value='combo_facility'))
-        CmbFacility.select_by_value('Hongkong CURA Healthcare Center')
-
-        Chckbox = driver.find_element(by=By.ID, value='chk_hospotal_readmission')
-        Chckbox.click()
-
-        Option = driver.find_element(by=By.XPATH, value='//*[@id="appointment"]/div/div/form/div[3]/div/label[2]')
-        Option.click()
-
-        DateTime = driver.find_element(by=By.ID, value='txt_visit_date')
-        DateTime.click()
-
-        PickDate = driver.find_element(by=By.XPATH, value='/html/body/div/div[1]/table/tbody/tr[3]/td[5]')
-        PickDate.click()
+        btnMenu = self.driver.find_element(by=By.XPATH, value="//*[@id='menu-toggle']")
+        btnMenu.click()
         
-        Comment = driver.find_element(by=By.ID, value='txt_comment')
-        Comment.send_keys("Testing ini adalah tessting aja.")
+        menuLogout = self.driver.find_element(by=By.XPATH, value="//*[@id='sidebar-wrapper']/ul/li[5]/a")
+        menuLogout.click()
+        time.sleep(2)  
 
-        BtnBook = driver.find_element(by=By.ID, value='btn-book-appointment')
-        BtnBook.click()
-        time.sleep(1)
-
-        
+        btnMenu2 = self.driver.find_element(by=By.XPATH,value="//*[@id='menu-toggle']")
+        btnMenu2.click()
+        actualRslt = "Login"
+        response_message = driver.find_element(By.XPATH,"//*[@id='sidebar-wrapper']/ul/li[3]/a").text
+        self.assertEqual(response_message, actualRslt)
 unittest.main()
 
 
